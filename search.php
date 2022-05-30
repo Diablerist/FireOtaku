@@ -1,11 +1,13 @@
-<?php 
-  require_once 'classes/Search.php';
+<?php
+    require_once 'classes/Search.php';
 
-  $search = new Search;
-  $trendingAnimes = $search->trendingAnime();
-  $trendingManga = $search->trendingManga();
-
-  $topAnime = $trendingAnimes[0];
+    $usersearch = filter_input(INPUT_GET, 'search');
+    $search = new Search();
+    
+    $animes = $search->animeFilter($usersearch);
+    $mangas = $search->mangaFilter($usersearch);
+    $trendingAnimes = $search->trendingAnime();
+    $topAnime = $trendingAnimes[0];
 
 ?>
 
@@ -43,7 +45,7 @@
       <section class="catalog" id="anime">
         <div class="content">
           <div class="title-wrapper-catalog">
-            <h3>Trending Animes</h3>
+            <h3>Anime</h3>
           </div>
           <div class="filter-card">
             <form action="search.php" method="get">
@@ -57,7 +59,7 @@
             </form>
           </div>
           <div class="card-wrapper">
-            <?php foreach ($trendingAnimes as $anime):?>
+            <?php foreach ($animes as $anime):?>
               <div class="card-item">
                 <img src="<?=$anime->getPosterImage()?>" alt="AnimeBanner" />
                 <div class="card-content">
@@ -76,10 +78,10 @@
       <section class="catalog" id="manga">
         <div class="content">
           <div class="title-wrapper-catalog">
-            <h3>Trending Mangas</h3>
+            <h3>Mangas</h3>
           </div>
           <div class="card-wrapper">
-            <?php foreach ($trendingManga as $manga):?>
+            <?php foreach ($mangas as $manga):?>
               <div class="card-item">
                 <img src="<?=$manga->getPosterImage()?>" alt="MangaBanner" />
                 <div class="card-content">

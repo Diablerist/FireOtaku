@@ -22,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-header {
+.header-index {
   width: 100%;
   height: 500px;
   background: var(--blue);
@@ -72,23 +72,6 @@ nav ul li a:hover {
   color: #00285f83;
 }
 
-nav ul button {
-  border: 1px solid var(--darkerb);
-  background: transparent;
-  padding: 8px 40px;
-  cursor: pointer;
-  margin-left: 30px;
-  color: var(--darkerb);
-  font-weight: bold;
-  border-radius: 4px;
-}
-
-nav ul button:hover {
-  transition: background, color 0.6s;
-  background: var(--darkerb);
-  color: white;
-}
-
 .content .header-block {
   max-width: 1000px;
   min-width: 300px;
@@ -123,16 +106,12 @@ nav ul button:hover {
   color: white;
   margin-bottom: 20px;
   text-align: right;
-  transform: translateX(-20px);
-  transition: transform 0.5s;
 }
 
 .header-block .text p {
   max-width: 280px;
   color: white;
   text-align: right;
-  transform: translateX(-20px);
-  transition: transform 0.4s;
 }
 
 /* Product Catalog */
@@ -191,6 +170,7 @@ section .card-wrapper {
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   grid-gap: 30px;
   padding-top: 50px;
+  align-self: center;
 }
 
 section .card-item {
@@ -212,7 +192,10 @@ section .card-item {
 }
 
 .card-item img {
-  height: 200px;
+  max-height: 200px;
+  max-width: 95%;
+  align-self: center;
+  margin: 3px;
 }
 
 .card-item h4 {
@@ -229,7 +212,9 @@ section .card-item {
   text-overflow: ellipsis;
 }
 
-.card-item button {
+.card-item a {
+  text-decoration: none;
+  text-align: center;
   width: 90%;
   padding: 10px;
   margin: 5px;
@@ -244,59 +229,92 @@ section .card-item {
   margin-bottom: 10px;
 }
 
-.card-item button:hover {
+.card-item a:hover {
   background: #dedede;
   color: var(--darkerb);
 }
 
-/* Features */
-.features {
+.header-details {
   width: 100%;
-  height: 100%;
-  background: var(--gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 0px;
-}
-
-.title-wrapper-features {
-  padding: 20px 0px;
-}
-
-.feature-card-block {
-  max-width: 1000px;
-  min-width: 300px;
-  height: 600px;
-  background: white;
-  margin: 0 auto;
-  border-radius: 8px;
-  z-index: 10;
-  padding: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-  grid-gap: 30px;
-}
-
-.feature-card-item {
-  max-width: 420px;
   height: 150px;
+  background: var(--blue);
+}
+
+.info {
+  width: 1100px;
+  min-height: 500px;
+  max-height: 700px;
+  background: var(--darkerb);
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  border: 1px solid #dedede3b;
-  border-radius: 4px;
+  align-self: center;
+  border: 2px var(--gray) solid;
+  border-radius: 8px;
+  box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 10;
+  padding: 5px;
 }
 
-.feature-text-content {
-  max-width: 60%;
-  margin: 5px;
+.info img {
+  max-width: 350px;
+  max-height: 500px;
+  border: 2px var(--gray) solid;
 }
 
-.feature-card-item img {
-  width: 64px;
-  height: 64px;
+.info table {
+  margin-left: 3px;
+  max-height: 100%;
+  border: 2px var(--gray) solid;
+}
+
+.info table th {
+  border-bottom: 2px var(--gray) dotted;
+  padding: 2px;
+}
+
+.info table td {
+  border-bottom: 2px var(--gray) dotted;
+  padding: 2px;
+}
+
+.info-episode {
+  width: 1100px;
+  min-height: 250px;
+  max-height: 500px;
+  background: var(--darkerb);
+  display: flex;
+  align-self: center;
+  border: 2px var(--gray) solid;
+  border-radius: 8px;
+  box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 10;
+  padding: 5px;
+}
+
+.info-episode img {
+  max-width: 35%;
+  max-height: 20%;
+}
+
+.info-episode table {
+  margin-left: 3px;
+  max-height: 100%;
+  border: 2px var(--gray) solid;
+}
+
+.info-episode table th {
+  border-bottom: 2px var(--gray) dotted;
+  padding: 2px;
+}
+
+.info-episode table td {
+  border-bottom: 2px var(--gray) dotted;
+  padding: 2px;
 }
 
 /* Footer */
@@ -386,40 +404,6 @@ footer .last {
   .search-button {
     max-width: 150px;
     min-width: 80px;
-  }
-
-  .about {
-    margin-top: 100px;
-  }
-
-  .title-wrapper-about {
-    margin-bottom: 20px;
-  }
-  .about-content {
-    flex-direction: column;
-    height: 100%;
-  }
-  .left {
-    display: none;
-  }
-  .right {
-    width: 90%;
-  }
-
-  .right p {
-    width: 100%;
-    margin: 0px;
-    text-align: left;
-  }
-
-  .features {
-    height: 100%;
-  }
-
-  .feature-card-block {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
   }
 
   footer {

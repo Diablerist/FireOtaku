@@ -1,8 +1,6 @@
 <?php
 
-class Container {
-
-    //atributos gerais:
+class Manga {
 
     private $id;
     private $type;
@@ -18,18 +16,8 @@ class Container {
     private $ageRatingGuide;
     private $status;
     private $posterImage;
-    private $coverImage;
     private $genres;
     private $categories;
-    
-
-    //atributos de animes:
-
-    private $episodeCount;
-    private $episodes;
-
-    //atributos de mangás:
-
     private $mangaType;
     private $serialization;
     private $chapterCount;
@@ -140,13 +128,6 @@ class Container {
         return $this->coverImage;
     }
 
-    public function setEpisodeCount($ec) {
-        $this->episodeCount = $ec;
-    }
-    public function getEpisodeCount() {
-        return $this->episodeCount;
-    }
-
     public function setGenres($g) {
         $this->genres = $g;
     }
@@ -160,15 +141,6 @@ class Container {
     public function getCategories() {
         return $this->categories;
     }
-
-    public function setEpisodes($e) {
-        $this->episodes = $e;
-    }
-    public function getEpisodes() {
-        return $this->episodes;
-    }
-
-    //Funções para mangás
 
     public function setMangaType($mt) {
         $this->mangaType = $mt;
