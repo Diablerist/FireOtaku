@@ -8,6 +8,7 @@ require_once 'Episode.php';
 class Search {
 
     private $base_url = "https://kitsu.io/api/edge";
+    private $sort_abc = "sort=title";
 
 
     private function setCurl($p) {
@@ -98,26 +99,64 @@ class Search {
         return $array;
     }
 
-    public function animeFilter($us) {
+    private function setFilters($b, $t = '', $y = '', $c = '') {
 
-        $s = preg_replace('/[ -]+/' , '%20' , $us);
+        $separator = '';
 
-        $url = "/anime?filter%5Btext%5D=".$s;
+        if ($t != '') {
+            $tfilter = preg_replace('/[ -]+/' , '%20' , $t);
+            if ($y != '' || $c != '') {
+                $separator = '&';
+            }
+            $text = 'filter%5Btext%5D='.$tfilter.$separator;
+            $separator = '';
+        } else {
+            $text = '';
+        }
 
-        $list = $this->setCurl($this->base_url.$url);
+        if ($y != '') {
+            $yfilter = trim($y);
+            if ($c != '') {
+                $separator = '&';
+            }
+            $year = 'filter%5BseasonYear%5D='.$yfilter.$separator;
+            $separator = '';
+        } else {
+            $year = '';
+        }
+
+        if ($c != '') {
+            $cfilter = $c;
+            $category = 'filter%5Bcategories%5D='.$cfilter;
+        } else {
+            $category = '';
+        }
+
+        $url = $this->base_url.$b.$text.$year.$category;
+
+        return $url;
+    }
+
+    public function animeFilter($t = '', $y = '', $c = '') {
+
+        $b = '/anime?';
+
+        $url = $this->setFilters($b, $t, $y, $c);
+
+        $list = $this->setCurl($url);
 
         $animes = $this->setAnimes($list);
 
         return $animes; 
     }
 
-    public function mangaFilter($us) {
+    public function mangaFilter($t = '', $y = '', $c = '') {
 
-        $s = preg_replace('/[ -]+/' , '%20' , $us);
+        $b = '/manga?';
 
-        $url = "/manga?filter%5Btext%5D=".$s;
+        $url = $this->setFilters($b, $t, $y, $c);
 
-        $list = $this->setCurl($this->base_url.$url);
+        $list = $this->setCurl($url);
 
         $mangas = $this->setManga($list);
 
@@ -248,5 +287,26 @@ class Search {
         $e->setThumbnail($item->data->attributes->thumbnail->original);
 
         return $e;
+    }
+
+    public function allCategories() {
+
+        $array = [];
+
+        $url = $this->base_url.'/categories?page%5Blimit%5D=1000&page%5Boffset%5D=0&'.$this->sort_abc;
+
+        $list = $this->setCurl($url);
+
+        foreach ($list->data as $item) {
+            $c = new Category();
+            $c->setId($item->id);
+            $c->setType($item->type);
+            $c->setTitle($item->attributes->title);
+            $c->setSlug($item->attributes->slug);
+
+            $array[] = $c;
+        }
+
+        return $array;
     }
 }

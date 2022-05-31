@@ -1,11 +1,15 @@
 <?php
     require_once 'classes/Search.php';
 
-    $usersearch = filter_input(INPUT_GET, 'search');
+    $text = filter_input(INPUT_GET, 'text');
+    $year = filter_input(INPUT_GET, 'year');
+    $category = filter_input(INPUT_GET, 'category');
+    
     $search = new Search();
     
-    $animes = $search->animeFilter($usersearch);
-    $mangas = $search->mangaFilter($usersearch);
+    $categories = $search->allCategories();
+    $animes = $search->animeFilter($text, $year, $category);
+    $mangas = $search->mangaFilter($text, $year, $category );
     $trendingAnimes = $search->trendingAnime();
     $topAnime = $trendingAnimes[0];
 
@@ -51,10 +55,23 @@
             <form action="search.php" method="get">
               <input
                 type="text"
-                name="search"
+                name="text"
                 class="search-input"
                 placeholder="Search for an anime, manga, genre, etc."
               />
+              <br/>
+              <select name="category" id="category" class="category-select">
+                <option value="">Categories</option>
+                <?php foreach ($categories as $category):?>
+                  <option value="<?=$category->getSlug()?>"><?=$category->getTitle()?></option>
+                <?php endforeach; ?>
+              </select>
+              <select name="year" id="year" class="year-select">
+                <option value="">Year</option>
+                <?php for ($y = 2022; $y >= 1907; $y--):?>
+                  <option value="<?=$y?>"><?=$y?></option>
+                <?php endfor; ?>
+              </select><br/>
               <input class="search-button" type="submit" value="Search"/>
             </form>
           </div>
@@ -107,9 +124,9 @@
             </div>
             <div class="footer-rental">
               <h4>Info</h4>
-              <h6>Estilos baseados</h6>
-              <h6>Em curso</h6>
+              <h6>Styles based in</h6>
               <h6>HTML/CSS</h6>
+              <h6>Class</h6>
             </div>
             <div class="footer-social">
               <h4>Stay connected</h4>
@@ -121,12 +138,12 @@
             <div class="footer-contact">
               <h4>Contact US</h4>
               <h6>+55 XX X XXXX-XXXX</h6>
-              <h6>contato@fireanimes.com.br</h6>
-              <h6>Nome da Rua, Porto Alegre - RS</h6>
+              <h6>contact@fireotaku.com</h6>
+              <h6>Street Name, Porto Alegre - RS</h6>
             </div>
           </div>
         </div>
-        <div class="last">FireAnimes - V1.0 - 2022</div>
+        <div class="last">FireOtaku - V1.0 - 2022</div>
       </footer>
     </body>
   </html>

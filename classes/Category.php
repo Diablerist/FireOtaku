@@ -4,8 +4,7 @@ class Category {
     private $id;
     private $type;
     private $title;
-    private $totalMediaCount;
-    private $image;
+    private $slug;
 
     public function setId($id) {
         $this->id = $id;
@@ -28,17 +27,10 @@ class Category {
         return $this->title;
     }
 
-    public function setTotalMediaCount($t) {
-        $this->totalMediaCount = $t;
+    public function setSlug($s) {
+        $this->slug = $s;
     }
-    public function getTotalMediaCount() {
-        return $this->totalMediaCount;
-    }
-
-    public function setImage($i) {
-        $this->image = $i;
-    }
-    public function getImage() {
-        return $this->image;
+    public function getSlug() {
+        return $this->slug;
     }
 }

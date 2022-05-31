@@ -123,7 +123,7 @@ section .catalog {
 
 section .filter-card {
   width: 980px;
-  height: 150px;
+  height: 200px;
   background: var(--gray);
   border-radius: 8px;
   margin: 0 auto;
@@ -137,14 +137,38 @@ section .filter-card {
   width: 700px;
   height: 50px;
   border: none;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px;
   text-indent: 10px;
+  margin: 0px;
+}
+
+.category-select {
+  appearance: none;
+  width: 620px;
+  height: 50px;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  text-indent: 10px;
+}
+
+.year-select {
+  margin: 2px 2px 2px 0px;
+  appearance: none;
+  width: 76px;
+  height: 50px;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  text-indent: 10px;
+  text-align: center;
 }
 
 .search-button {
   width: 150px;
   height: 50px;
-  border-radius: 0px 4px 4px 0px;
+  position: relative;
+  border-radius: 4px;
   border: none;
   background: var(--darkerb);
   color: white;

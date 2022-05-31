@@ -110,5 +110,36 @@
           </div>
         </div>
       </section>
+      <footer>
+        <div class="main">
+          <div class="content footer-links">
+            <div class="footer-company">
+              <h4>Company</h4>
+              <h6>About</h6>
+              <h6>Contact</h6>
+            </div>
+            <div class="footer-rental">
+              <h4>Info</h4>
+              <h6>Styles based in</h6>
+              <h6>HTML/CSS</h6>
+              <h6>Class</h6>
+            </div>
+            <div class="footer-social">
+              <h4>Stay connected</h4>
+                <div class="social-icons">
+                  <img src="images/instagram.png" alt="Instagram" />
+                  <img src="images/facebook.png" alt="Facebook" />
+                </div>
+            </div>
+            <div class="footer-contact">
+              <h4>Contact US</h4>
+              <h6>+55 XX X XXXX-XXXX</h6>
+              <h6>contact@fireotaku.com</h6>
+              <h6>Street Name, Porto Alegre - RS</h6>
+            </div>
+          </div>
+        </div>
+        <div class="last">FireOtaku - V1.0 - 2022</div>
+      </footer>
     </body>
 </html>

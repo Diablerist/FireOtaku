@@ -2,8 +2,11 @@
   require_once 'classes/Search.php';
 
   $search = new Search;
+
   $trendingAnimes = $search->trendingAnime();
   $trendingManga = $search->trendingManga();
+
+  $categories = $search->allCategories();
 
   $topAnime = $trendingAnimes[0];
 
@@ -49,10 +52,23 @@
             <form action="search.php" method="get">
               <input
                 type="text"
-                name="search"
+                name="text"
                 class="search-input"
                 placeholder="Search for an anime, manga, genre, etc."
               />
+              <br/>
+              <select name="category" id="category" class="category-select">
+                <option value="">Categories</option>
+                <?php foreach ($categories as $category):?>
+                  <option value="<?=$category->getSlug()?>"><?=$category->getTitle()?></option>
+                <?php endforeach; ?>
+              </select>
+              <select name="year" id="year" class="year-select">
+                <option value="">Year</option>
+                <?php for ($y = 2022; $y >= 1907; $y--):?>
+                  <option value="<?=$y?>"><?=$y?></option>
+                <?php endfor; ?>
+              </select><br/>
               <input class="search-button" type="submit" value="Search"/>
             </form>
           </div>
@@ -119,12 +135,12 @@
             <div class="footer-contact">
               <h4>Contact US</h4>
               <h6>+55 XX X XXXX-XXXX</h6>
-              <h6>contato@fireanimes.com.br</h6>
-              <h6>Nome da Rua, Porto Alegre - RS</h6>
+              <h6>contact@fireotaku.com</h6>
+              <h6>Street Name, Porto Alegre - RS</h6>
             </div>
           </div>
         </div>
-        <div class="last">FireAnimes - V1.0 - 2022</div>
+        <div class="last">FireOtaku - V1.0 - 2022</div>
       </footer>
     </body>
   </html>
