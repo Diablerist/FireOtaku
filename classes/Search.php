@@ -26,6 +26,12 @@ class Search {
         return $list;
     }
 
+    private function setPagination($p = 0) {
+        $pagination = '&page%5Blimit%5D=18&page%5Boffset%5D='.$p;
+
+        return $pagination;
+    }
+
     private function setAnimes($list) {
 
         $array = [];
@@ -137,26 +143,30 @@ class Search {
         return $url;
     }
 
-    public function animeFilter($t = '', $y = '', $c = '') {
+    public function animeFilter($t = '', $y = '', $c = '', $p = 0) {
 
         $b = '/anime?';
 
         $url = $this->setFilters($b, $t, $y, $c);
 
-        $list = $this->setCurl($url);
+        $pagination = $this->setPagination($p);
+
+        $list = $this->setCurl($url.$pagination);
 
         $animes = $this->setAnimes($list);
 
         return $animes; 
     }
 
-    public function mangaFilter($t = '', $y = '', $c = '') {
+    public function mangaFilter($t = '', $y = '', $c = '', $p = 0) {
 
         $b = '/manga?';
 
         $url = $this->setFilters($b, $t, $y, $c);
 
-        $list = $this->setCurl($url);
+        $pagination = $this->setPagination($p);
+
+        $list = $this->setCurl($url.$pagination);
 
         $mangas = $this->setManga($list);
 
@@ -247,11 +257,13 @@ class Search {
         error_reporting(E_ALL);
     }
 
-    public function episodes($el) {
+    public function episodes($el, $p = 0) {
 
         $array = [];
 
-        $list = $this->setCurl($el);
+        $pagination = $this->setPagination($p);
+
+        $list = $this->setCurl($el.'?'.$pagination);
 
         foreach ($list->data as $item) {
 

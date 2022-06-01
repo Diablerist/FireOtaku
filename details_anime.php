@@ -2,6 +2,13 @@
     require_once 'classes/Search.php';
 
     $id = filter_input(INPUT_GET, 'id');
+    $page = filter_input(INPUT_GET, 'page');
+
+    $base_url = 'details_anime.php?id='.$id;
+
+    $prev_page = $base_url.'&page='.$page-18;
+    $next_page = $base_url.'&page='.$page+18;
+    $first_page = $base_url.'&page='.'0';
     
     $search = new Search();
 
@@ -17,7 +24,7 @@
     
     }
 
-    $episodes = $search->episodes($anime->getEpisodes());
+    $episodes = $search->episodes($anime->getEpisodes(), $page);
 
 ?>
 
@@ -34,7 +41,7 @@
         <header class="header-details">
             <div class="content">
             <nav>
-                <p class="brand">Fire<strong>Otaku</strong></p>
+                <p class="brand"><a href="index.php">Fire<strong>Otaku</strong></a></p>
             </nav>
         </header>
         <section class="content">
@@ -93,22 +100,30 @@
           <div class="title-wrapper-catalog">
             <h3>Episodes</h3>
           </div>
-          </div>
-          <div class="card-wrapper">
-            <?php foreach ($episodes as $episode):?>
-              <div class="card-item">
-                <img src="<?=$episode->getThumbnail()?>" alt="AnimeBanner" />
-                <div class="card-content">
-                  <h3>Episode <?=$episode->getNumber()?></h3>
-                  <p>
-                    <?=$episode->getSynopsis()?>
-                  </p>
-                  <a href="details_episode.php?id=<?=$episode->getId()?>">Details</a>
-                </div>
-              </div>
-            <?php endforeach; ?>
-          </div>
+          <center>
+            <div class="card-wrapper">
+                <?php foreach ($episodes as $episode):?>
+                    <div class="card-item">
+                        <img src="<?=$episode->getThumbnail()?>" alt="AnimeBanner" />
+                        <div class="card-content">
+                            <h3>Episode <?=$episode->getNumber()?></h3>
+                            <p>
+                                <?=$episode->getSynopsis()?>
+                            </p>
+                            <a href="details_episode.php?id=<?=$episode->getId()?>">Details</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+           </center>
         </div>
+        <center>
+            <div class="page-wrapper">
+                <a href="<?=$first_page?>" class="page-button">First</a>
+                <a href="<?=$prev_page?>" class="page-button">Prev</a>
+                <a href="<?=$next_page?>" class="page-button">Next</a>
+            </div>
+        </center>
       </section>
       <footer>
         <div class="main">

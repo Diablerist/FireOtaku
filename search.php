@@ -4,12 +4,19 @@
     $text = filter_input(INPUT_GET, 'text');
     $year = filter_input(INPUT_GET, 'year');
     $category = filter_input(INPUT_GET, 'category');
+    $page = filter_input(INPUT_GET, 'page');
+
+    $base_url = 'search.php?text='.$text.'&category='.$category.'&year='.$year;
     
+    $prev_page = $base_url.'&page='.$page-18;
+    $next_page = $base_url.'&page='.$page+18;
+    $first_page = $base_url.'&page='.'0';
+
     $search = new Search();
     
     $categories = $search->allCategories();
-    $animes = $search->animeFilter($text, $year, $category);
-    $mangas = $search->mangaFilter($text, $year, $category );
+    $animes = $search->animeFilter($text, $year, $category, $page);
+    $mangas = $search->mangaFilter($text, $year, $category, $page);
     $trendingAnimes = $search->trendingAnime();
     $topAnime = $trendingAnimes[0];
 
@@ -28,7 +35,7 @@
       <header class="header-index">
         <div class="content">
           <nav>
-            <p class="brand">Fire<strong>Otaku</strong></p>
+            <p class="brand"><a href="index.php">Fire<strong>Otaku</strong></a></p>
             <ul>
               <li><a href="#anime">Anime</a></li>
               <li><a href="#manga">Manga</a></li>
@@ -48,9 +55,6 @@
 
       <section class="catalog" id="anime">
         <div class="content">
-          <div class="title-wrapper-catalog">
-            <h3>Anime</h3>
-          </div>
           <div class="filter-card">
             <form action="search.php" method="get">
               <input
@@ -75,6 +79,9 @@
               <input class="search-button" type="submit" value="Search"/>
             </form>
           </div>
+          <div class="title-wrapper-catalog">
+            <h3>Anime</h3>
+          </div>
           <div class="card-wrapper">
             <?php foreach ($animes as $anime):?>
               <div class="card-item">
@@ -89,6 +96,13 @@
               </div>
             <?php endforeach; ?>
           </div>
+          <center>
+            <div class="page-wrapper">
+                <a href="<?=$first_page?>" class="page-button">First</a>
+                <a href="<?=$prev_page?>" class="page-button">Prev</a>
+                <a href="<?=$next_page?>" class="page-button">Next</a>
+            </div>
+        </center>
         </div>
       </section>
 
@@ -111,6 +125,13 @@
               </div>
             <?php endforeach; ?>
           </div>
+          <center>
+            <div class="page-wrapper">
+                <a href="<?=$first_page?>" class="page-button">First</a>
+                <a href="<?=$prev_page?>" class="page-button">Prev</a>
+                <a href="<?=$next_page?>" class="page-button">Next</a>
+            </div>
+        </center>
         </div>
       </section>
         

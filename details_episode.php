@@ -32,7 +32,7 @@
         <header class="header-details">
             <div class="content">
             <nav>
-                <p class="brand">Fire<strong>Otaku</strong></p>
+                <p class="brand"><a href="index.php">Fire<strong>Otaku</strong></a></p>
             </nav>
         </header>
         <section class="content">

@@ -45,9 +45,6 @@
 
       <section class="catalog" id="anime">
         <div class="content">
-          <div class="title-wrapper-catalog">
-            <h3>Trending Animes</h3>
-          </div>
           <div class="filter-card">
             <form action="search.php" method="get">
               <input
@@ -71,6 +68,9 @@
               </select><br/>
               <input class="search-button" type="submit" value="Search"/>
             </form>
+          </div>
+          <div class="title-wrapper-catalog">
+            <h3>Trending Animes</h3>
           </div>
           <div class="card-wrapper">
             <?php foreach ($trendingAnimes as $anime):?>
@@ -121,9 +121,9 @@
             </div>
             <div class="footer-rental">
               <h4>Info</h4>
-              <h6>Estilos baseados</h6>
-              <h6>Em curso</h6>
+              <h6>Styles based in</h6>
               <h6>HTML/CSS</h6>
+              <h6>Class</h6>
             </div>
             <div class="footer-social">
               <h4>Stay connected</h4>
