@@ -271,7 +271,7 @@ section .card-item {
 .info {
   max-width: 1100px;
   min-height: 500px;
-  max-height: 700px;
+  max-height: 900px;
   background: var(--darkerb);
   display: flex;
   align-self: center;

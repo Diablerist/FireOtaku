@@ -5,12 +5,21 @@ require_once 'Manga.php';
 require_once 'Category.php';
 require_once 'Episode.php';
 
+/**
+ * Search
+ * Essa classe foi criada para fazer consultas e retornar dados da API: https://kitsu.docs.apiary.io
+ */
 class Search {
-
+    /** @var string Url base para consultas na api */
     private $base_url = "https://kitsu.io/api/edge";
-    private $sort_abc = "sort=title";
 
-
+        
+    /**
+     * setCurl
+     *
+     * @param  string $p Recebe o link para consulta na api
+     * @return object Retorna os dados do arquivo .json fornecido pela api, já convertido
+     */
     private function setCurl($p) {
 
         $ch = curl_init();
@@ -25,13 +34,25 @@ class Search {
         
         return $list;
     }
-
+    
+    /**
+     * setPagination
+     *
+     * @param  mixed $p Recebe o numero da pagina que o usuário deseja acessar
+     * @return string Retorna o link para a paginação completa
+     */
     private function setPagination($p = 0) {
         $pagination = '&page%5Blimit%5D=18&page%5Boffset%5D='.$p;
 
         return $pagination;
     }
-
+    
+    /**
+     * setAnimes
+     *  
+     * @param  object Recebe os dados da função setCurl
+     * @return object Retorna objetos "Anime"
+     */
     private function setAnimes($list) {
 
         $array = [];
@@ -67,7 +88,13 @@ class Search {
 
         return $array;
     }
-
+    
+    /**
+     * setManga
+     *
+     * @param  object Recebe os dados da função setCurl
+     * @return object Retorna objetos "Manga"
+     */
     private function setManga($list) {
 
         $array = [];
@@ -104,7 +131,16 @@ class Search {
 
         return $array;
     }
-
+    
+    /**
+     * setFilters
+     *
+     * @param  string $b Recebe a base para o filtro
+     * @param  string $t Recebe o filtro de texto
+     * @param  string $y Recebe o filtro de ano
+     * @param  string $c Recebe o filtro de categoria
+     * @return string Retorna a url formatada
+     */
     private function setFilters($b, $t = '', $y = '', $c = '') {
 
         $separator = '';
@@ -142,7 +178,16 @@ class Search {
 
         return $url;
     }
-
+    
+    /**
+     * animeFilter
+     *
+     * @param  string $t Recebe o filtro de texto
+     * @param  string $y Recebe o filtro de ano
+     * @param  string $c Recebe o filtro de categoria
+     * @param  int $p Recebe o valor que será enviado a paginação
+     * @return object Retorna os animes filtrados
+     */
     public function animeFilter($t = '', $y = '', $c = '', $p = 0) {
 
         $b = '/anime?';
@@ -157,7 +202,16 @@ class Search {
 
         return $animes; 
     }
-
+    
+    /**
+     * mangaFilter
+     *
+     * @param  string $t Recebe o filtro de texto
+     * @param  string $y Recebe o filtro de ano
+     * @param  string $c Recebe o filtro de categoria
+     * @param  int $p Recebe o valor que será enviado a paginação
+     * @return object Retorna os mangas filtrados
+     */
     public function mangaFilter($t = '', $y = '', $c = '', $p = 0) {
 
         $b = '/manga?';
@@ -172,7 +226,12 @@ class Search {
 
         return $mangas; 
     }
-
+    
+    /**
+     * trendingAnime
+     *
+     * @return object Retorna os objetos "Anime" referentes aos animes mais populares
+     */
     public function trendingAnime() {
 
         $list = $this->setCurl($this->base_url."/trending/anime");
@@ -181,7 +240,12 @@ class Search {
 
         return $animes; 
     }
-
+    
+    /**
+     * trendingManga
+     *
+     * @return object Retorna os objetos "Manga" referentes aos mangás mais populares
+     */
     public function trendingManga() {
 
         $list = $this->setCurl($this->base_url."/trending/manga");
@@ -190,7 +254,13 @@ class Search {
 
         return $mangas;
     }
-
+    
+    /**
+     * animeId
+     *
+     * @param  int $id Recebe o id de um anime específico
+     * @return object Retorna o objeto "Anime" referente ao id procurado
+     */
     public function animeId($id) {
         
         $anime = $this->setCurl($this->base_url."/anime/$id");
@@ -222,7 +292,13 @@ class Search {
 
         error_reporting(E_ALL);
     }
-
+    
+    /**
+     * mangaId
+     *
+     * @param  int $id Recebe o id de um mangá específico
+     * @return object Retorna o objeto "Manga" referente ao id procurado
+     */
     public function mangaId($id) {
         
         $manga = $this->setCurl($this->base_url."/manga/$id");
@@ -256,7 +332,15 @@ class Search {
 
         error_reporting(E_ALL);
     }
-
+    
+    /**
+     * episodes
+     *
+     * @param  string $el Recebe o link da api referente aos episódios do anime que é exibido na pagina
+     * "details_anime.php"
+     * @param  int $p Recebe o numero referente a paginação
+     * @return object Retorna a lista de episódios em objetos "Episode"
+     */
     public function episodes($el, $p = 0) {
 
         $array = [];
@@ -283,7 +367,13 @@ class Search {
         return $array;
         
     }
-
+    
+    /**
+     * episodeId
+     *
+     * @param  int $id Recebe o id referente ao episódio procurado
+     * @return object Retorna o objeto "Episode" referente ao id procurado
+     */
     public function episodeId($id) {
 
         $item = $this->setCurl($this->base_url."/episodes/".$id);
@@ -300,12 +390,19 @@ class Search {
 
         return $e;
     }
-
+    
+    /**
+     * allCategories
+     *
+     * @return object Retorna todas as categorias disponiveis
+     */
     public function allCategories() {
 
         $array = [];
 
-        $url = $this->base_url.'/categories?page%5Blimit%5D=1000&page%5Boffset%5D=0&'.$this->sort_abc;
+        $sort_abc = "sort=title";
+
+        $url = $this->base_url.'/categories?page%5Blimit%5D=1000&page%5Boffset%5D=0&'.$sort_abc;
 
         $list = $this->setCurl($url);
 

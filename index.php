@@ -25,7 +25,7 @@
       <header class="header-index">
         <div class="content">
           <nav>
-            <p class="brand">Fire<strong>Otaku</strong></p>
+            <p class="brand"><a href="index.php">Fire<strong>Otaku</strong></a></p>
             <ul>
               <li><a href="#anime">Anime</a></li>
               <li><a href="#manga">Manga</a></li>

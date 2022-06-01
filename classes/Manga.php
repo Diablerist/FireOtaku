@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * Manga
+ * Essa classe foi criada para conter todas as informações de determinado mangá, recebendo os atributos
+ * referentes ao mangá especificado. Todos os seus metodos tem a função de atributir e retornar valores
+ * de seus atributos. Os objetos dessa classe são gerados automaticamente através da classe Search, 
+ * presente em "classes/Search.php"
+ */
 class Manga {
-
+    
     private $id;
     private $type;
     private $self_link;
