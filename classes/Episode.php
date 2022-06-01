@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Episode
+ * Essa classe foi criada para conter todas as informações de determinado episodio, recebendo os atributos
+ * referentes ao episodio especificado. Todos os seus metodos tem a função de atributir e retornar valores
+ * de seus atributos. Os objetos dessa classe são gerados automaticamente através da classe Search, 
+ * presente em "classes/Search.php"
+ */
+
 class Episode {
     private $id;
     private $canonicalTitle;
