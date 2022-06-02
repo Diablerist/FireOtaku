@@ -1,5 +1,5 @@
 /* font importing */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 /* reseting css rules */
 * {
@@ -7,7 +7,7 @@
   padding: 0px;
   box-sizing: border-box;
   outline: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 :root {
@@ -80,7 +80,7 @@ nav ul li a:hover {
   max-width: 1000px;
   min-width: 300px;
   height: 450px;
-  background: var(--darkerb);
+  background: var(--blue);
   border-radius: 8px;
   box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
@@ -92,6 +92,10 @@ nav ul li a:hover {
 
 .header-block img {
   height: 100%;
+  border: 2px var(--gray) solid;
+  box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
   align-items: right;
   right: 2%;
   bottom: 2%;
@@ -224,6 +228,10 @@ section .card-item {
   max-width: 95%;
   align-self: center;
   margin: 3px;
+  border: 3px var(--gray) solid;
+  box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .card-item h4 {
@@ -272,7 +280,7 @@ section .card-item {
   max-width: 1100px;
   min-height: 500px;
   max-height: 900px;
-  background: var(--darkerb);
+  background: var(--blue);
   display: flex;
   align-self: center;
   border: 2px var(--gray) solid;
@@ -289,12 +297,18 @@ section .card-item {
   max-width: 350px;
   max-height: 500px;
   border: 2px var(--gray) solid;
+  box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .info table {
   margin-left: 3px;
   max-height: 100%;
   border: 2px var(--gray) solid;
+  box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .info table th {
@@ -327,6 +341,7 @@ section .card-item {
 .info-episode img {
   max-width: 35%;
   max-height: 20%;
+  border: 2px var(--gray) solid;
 }
 
 .info-episode table {
